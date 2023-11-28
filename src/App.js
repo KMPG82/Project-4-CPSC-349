@@ -1,6 +1,6 @@
 import './assets/css/App.css';
 import './assets/css/main.css';
-import ResetPassword from './pages/ResetPassword';
+import SignUp from './pages/SignUp';
 /* 
 DONE:
 
@@ -11,19 +11,21 @@ sign up page is imported,
 log in page is imported,
 forgot password page is imported,
 reset password page is imported,
+navbar and footer implemented onto each page (except for forgot and reset password)
+
+-------------------
 
 TO DO:
 
-import navbar and footer
 add navigation between pages
 add pocketbase
-
+import navbar and footer to forgot and reset password (don't know if we need to or not)
 
 */
 function App() {
   return (
     <>
-        <ResetPassword />
+        <SignUp />
     </>
 
       );
