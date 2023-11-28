@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import './assets/css/App.css';
+import './assets/css/main.css';
+import ResetPassword from './pages/ResetPassword';
+/* 
+DONE:
 
+home page is imported,
+about us page is imported,
+inventory page is imported,
+sign up page is imported,
+log in page is imported,
+forgot password page is imported,
+reset password page is imported,
+
+TO DO:
+
+import navbar and footer
+add navigation between pages
+add pocketbase
+
+
+*/
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+        <ResetPassword />
+    </>
+
+      );
 }
 
 export default App;

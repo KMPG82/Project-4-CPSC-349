@@ -1,0 +1,11 @@
+import React from 'react'
+
+export default function ResetPassword() {
+    return (
+        <form action="" method="post">
+            <h1>Set a New Password</h1>
+            <input type="password" name="password" placeholder="New password" required/>
+            <button type="submit">Set Password</button>
+        </form>
+  )
+}
