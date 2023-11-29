@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pocketbase": "./pocketbase serve",
-    "starting": "npm-run-all --parallel pocketbase start"
+    "begin": "npm-run-all --parallel pocketbase start"
   },
   "eslintConfig": {
     "extends": [
