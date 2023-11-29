@@ -21,8 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pocketbase": "./pocketbase serve",
-    "begin": "npm-run-all --parallel pocketbase start",
-    "builder": "npm-run-all --parallel build pocketbase"
+    "begin": "npm-run-all --parallel pocketbase start"
   },
   "eslintConfig": {
     "extends": [
@@ -41,8 +40,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "netlify-cli": "^17.8.1"
   }
 }
