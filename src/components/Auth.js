@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form"
 export default function Auth() {
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
+    const [loggedOut, setLoggedOut] = useState(false)
+    const isLoggedIn = pb.authStore.isValid;
 
     console.log(register("email"));
 
@@ -18,21 +20,35 @@ export default function Auth() {
             alert(e);
         }
         setLoading(false);
-
     }
 
-    return (
-        <>
-            {isLoading && <p>Loading...</p>}
+    function logout() {
+        pb.authStore.clear();
+        setLoggedOut(!loggedOut)
+    }
 
-            <h1>logged in: {pb.authStore.isValid.toString()}</h1>
-
-            <form onSubmit={handleSubmit(login)}>
-                <input type="text" placeholder="email" {...register("email")} />
-                <input type="password" placeholder="password" {...register("password")}/>
-
-                <button type="submit" disabled={isLoading}>{isLoading ? "loading" : "login"}</button>
-            </form>
-        </>
-  )
+    if (isLoggedIn) {
+        return (
+            <>
+                <h1>Logged in: {isLoggedIn && pb.authStore.model.email}</h1>
+                <button onClick={logout}>Log out</button>
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                {isLoading && <p>Loading...</p>}
+    
+                <h1>Log in please</h1>
+    
+                <form onSubmit={handleSubmit(login)}>
+                    <input type="text" placeholder="email" {...register("email")} />
+                    <input type="password" placeholder="password" {...register("password")}/>
+    
+                    <button type="submit" disabled={isLoading}>{isLoading ? "loading" : "login"}</button>
+                </form>
+            </>
+      )
+    }
 }
