@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useState } from "react";
 import Layout from '../components/Layout';
+import pb from "../lib/pocketbase";
+import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
+    const { register, handleSubmit } = useForm();
+    const [isLoading, setLoading] = useState(false);
+    //const [loggedOut, setLoggedOut] = useState(false)
+    //const isLoggedIn = pb.authStore.isValid;
+
+    async function login(data) {
+        setLoading(true);
+        try {
+            const authData = await pb
+                .collection("users")
+                .authWithPassword(data.email, data.password);
+        } catch (e) {
+            alert(e);
+        }
+        setLoading(false);
+    }
+
     return (
         <Layout>
             <section id="log--in__section">
                 <div className="log--in__container">
                     <div className="form__left">
-                        <form className="log--in__form" action="/user/login">
+                        <form className="log--in__form" onSubmit={handleSubmit(login)}>
                         <h1 className="log--in__title">Log In</h1>
                         <div className="input__container">
                             <label className="input__text" >Username</label>
-                            <input className="input__login" type="text" name="username" placeholder="Username" required/>
+                            <input className="input__login" type="text" name="username" placeholder="Username" {...register("email")} required/>
                             <label className="input__text" >Password</label>
-                            <input className="input__login" type="password" name="password" placeholder="Password" required/>
+                                <input className="input__login" type="password" name="password" placeholder="Password" {...register("password")} required/>
                             <button className="input__button" type="submit">Log In</button>
                         </div>
                         <div className="account__info">

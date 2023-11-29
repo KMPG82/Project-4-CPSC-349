@@ -1,4 +1,5 @@
 import React from 'react';
+import pb from '../lib/pocketbase';
 
 export default function Footer() {
     return (

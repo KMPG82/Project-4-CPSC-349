@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import pb from "../lib/pocketbase";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 export default function Auth() {
     const { register, handleSubmit } = useForm();
