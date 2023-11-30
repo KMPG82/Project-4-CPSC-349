@@ -5,7 +5,6 @@ export default function Header() {
     const isLoggedIn = pb.authStore.isValid;
     const [loggedOut, setLoggedOut] = useState(false)
 
-
     function logout() {
         pb.authStore.clear();
         setLoggedOut(!loggedOut)
@@ -21,7 +20,7 @@ export default function Header() {
                             alt="" className="nav__logo" />
                         <ul className="nav__lists">
                             <li className="nav__list">
-                                <a className="nav__button" href="/#introduction">Home</a>
+                                <a className="nav__button" href="/Home">Home</a>
                             </li>
                             <li className="nav__list">
                                 <a className="nav__button" href="about-us">Trade</a>
