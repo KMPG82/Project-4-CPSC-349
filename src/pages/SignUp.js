@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import Layout from '../components/Layout';
 import { useForm } from "react-hook-form";
 import pb from '../lib/pocketbase';
+import { Link } from 'react-router-dom';
 
 export default function SignUp() {
     const { register, handleSubmit } = useForm();
@@ -29,7 +29,6 @@ export default function SignUp() {
     }
 
     return (
-        <Layout>
             <section id="signup__section">
                 <div className="log--in__container">
                     <div className="form__left">
@@ -43,7 +42,7 @@ export default function SignUp() {
                             <button className="input__button" type="submit">Sign Up</button>
                         </div>
                         <p className="account__quest">Have an account?</p>
-                        <a href="/user/login" className="toggle__link" data-target="#log--in__section" >Log In</a>
+                        <Link to="/login" className="toggle__link" >Log In</Link>
                         </form>
                     </div>
                     <div className="form__right">
@@ -55,6 +54,5 @@ export default function SignUp() {
                     </div>
                 </div>
             </section>
-        </Layout>
     )
 }

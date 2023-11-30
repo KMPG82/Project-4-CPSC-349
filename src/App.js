@@ -1,31 +1,33 @@
 import './assets/css/App.css';
 import './assets/css/main.css';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import AboutUs from './pages/AboutUs';
 import Login from './pages/Login';
-/* 
-DONE:
+import SignUp from './pages/SignUp';
+import Inventory from './pages/Inventory';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
-home page is imported,
-about us page is imported,
-inventory page is imported,
-sign up page is imported,
-log in page is imported,
-forgot password page is imported,
-reset password page is imported,
-navbar and footer implemented onto each page (except for forgot and reset password)
-pocketbase is added
+import { Route, Routes } from 'react-router-dom';
 
--------------------
-
-TO DO:
-
-add navigation between pages
-import navbar and footer to forgot and reset password (don't know if we need to or not)
-
-*/
 function App() {
+  console.log(window.location);
   return (
     <>
-      <Login/>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/about' element={<AboutUs />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/signup' element={<SignUp />}></Route>
+          <Route path='/inventory' element={<Inventory />}></Route>
+          <Route path='/forgotpassword' element={<ForgotPassword />}></Route>
+          <Route path='/resetpassword' element={<ResetPassword />}></Route>
+        </Routes>
+      </Layout>
+
+   
     </>
 
       );

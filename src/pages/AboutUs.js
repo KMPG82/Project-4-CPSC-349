@@ -1,9 +1,7 @@
 import React from 'react';
-import Layout from '../components/Layout';
 
 export default function AboutUs() {
   return (
-    <Layout>
       <div className="about-us-page">
         <div className="main">
           <img
@@ -62,6 +60,5 @@ export default function AboutUs() {
             alt="" />
         </div>
       </div>
-    </Layout> 
   )
 }

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import pb from '../lib/pocketbase';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     const isLoggedIn = pb.authStore.isValid;
@@ -20,20 +21,20 @@ export default function Header() {
                             alt="" className="nav__logo" />
                         <ul className="nav__lists">
                             <li className="nav__list">
-                                <a className="nav__button" href="/Home">Home</a>
+                                <Link className="nav__button" to="/">Home</Link>
                             </li>
                             <li className="nav__list">
-                                <a className="nav__button" href="about-us">Trade</a>
+                                <Link className="nav__button" to="/inventory">Trade</Link>
                             </li>
                             <li className="nav__list">
-                                <a className="nav__button" href="about-us">About</a>
+                                <Link className="nav__button" to="/about">About</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="nav__right">
                         <ul className="nav__lists">
                             <li class="nav__list">
-                                <a onClick={logout} class="nav__button" href="/user/logout">Logout</a>
+                                <a onClick={logout} class="nav__button" >Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -51,20 +52,20 @@ export default function Header() {
                             alt="" className="nav__logo" />
                         <ul className="nav__lists">
                             <li className="nav__list">
-                                <a className="nav__button" href="/#introduction">Home</a>
+                                <Link className="nav__button" to="/">Home</Link>
                             </li>
                             <li className="nav__list">
-                                <a className="nav__button" href="about-us">About</a>
+                                <Link className="nav__button" to="/about">About</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="nav__right">
                         <ul className="nav__lists">
                             <li className="nav__list">
-                                <a className="nav__button" href="/user/signup">Sign up</a>
+                                <Link className="nav__button" to="/signup">Sign up</Link>
                             </li>
                             <li className="nav__list">
-                                <a className="nav__button" href="/user/login">Log in</a>
+                                <Link className="nav__button" to="/login">Log in</Link>
                             </li>
                         </ul>
                     </div>

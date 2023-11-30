@@ -1,5 +1,6 @@
 import React from 'react';
 import pb from '../lib/pocketbase';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -9,14 +10,11 @@ export default function Footer() {
             alt=""/>
           <p className="copyright">Copyright © 2023</p>
           <ul className="footer-ul">
-            <li className="footer-link"><a className="footer__link" href="/#introduction"> Home</a></li>
-            <li className="footer-last-link"><a className="footer__link" href="about-us">About</a></li>
+            <li className="footer-link"><Link className="footer__link" to="/"> Home</Link></li>
+            <li className="footer-last-link"><Link className="footer__link" to="/about">About</Link></li>
           </ul>
         </div>
-    
-            <img className="pokeball" src={require("../assets/imgs/pokeball.png")} alt=""/>
-    
-    
+        <img className="pokeball" src={require("../assets/imgs/pokeball.png")} alt="" />
       </footer>
   )
 }

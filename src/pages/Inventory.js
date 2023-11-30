@@ -1,9 +1,7 @@
 import React from 'react';
-import Layout from '../components/Layout';
 
 export default function Inventory() {
     return (
-        <Layout>
             <section id="main__section">
                 <div className="title__container">
                     <div className="sub__title--container">
@@ -77,6 +75,5 @@ export default function Inventory() {
                     </div>
                 </div>
             </section>
-        </Layout>
     )
 }
