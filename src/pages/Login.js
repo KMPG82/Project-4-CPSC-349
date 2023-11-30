@@ -1,28 +1,36 @@
 import React, { useState } from "react";
 import pb from "../lib/pocketbase";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import Layout from "../components/Layout";
 
 export default function Login() {
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
     //const [loggedOut, setLoggedOut] = useState(false)
-    //const isLoggedIn = pb.authStore.isValid;
+    const isLoggedIn = pb.authStore.isValid;
 
     async function login(data) {
         setLoading(true);
         try {
             const authData = await pb
                 .collection("users")
-                .authWithPassword(data.email, data.password);
+                .authWithPassword(data.email, data.password);            
         } catch (e) {
             alert(e);
         }
         setLoading(false);
     }
 
-    return (
-            <section id="log--in__section">
+    if (isLoggedIn) {
+        return (
+            <Navigate replace to="/inventory" />
+        )
+    }
+    else {
+        return (
+            <Layout>
+                <section id="log--in__section">
                 <div className="log--in__container">
                     <div className="form__left">
                         <form className="log--in__form" onSubmit={handleSubmit(login)}>
@@ -54,5 +62,7 @@ export default function Login() {
                     </div>
                 </div>
             </section>
-    )
+            </Layout>
+        )
+    }
 }

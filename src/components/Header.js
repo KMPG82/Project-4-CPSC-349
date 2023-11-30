@@ -8,7 +8,7 @@ export default function Header() {
 
     function logout() {
         pb.authStore.clear();
-        setLoggedOut(!loggedOut)
+        setLoggedOut(!loggedOut);
     }
 
     if (isLoggedIn) {
@@ -34,7 +34,7 @@ export default function Header() {
                     <div className="nav__right">
                         <ul className="nav__lists">
                             <li class="nav__list">
-                                <a onClick={logout} class="nav__button" >Logout</a>
+                                <Link onClick={logout} class="nav__button" >Logout</Link>
                             </li>
                         </ul>
                     </div>

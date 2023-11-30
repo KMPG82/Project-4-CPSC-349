@@ -1,6 +1,5 @@
 import './assets/css/App.css';
 import './assets/css/main.css';
-import Layout from './components/Layout';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import Login from './pages/Login';
@@ -15,19 +14,15 @@ function App() {
   console.log(window.location);
   return (
     <>
-      <Layout>
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/about' element={<AboutUs />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/signup' element={<SignUp />}></Route>
-          <Route path='/inventory' element={<Inventory />}></Route>
-          <Route path='/forgotpassword' element={<ForgotPassword />}></Route>
-          <Route path='/resetpassword' element={<ResetPassword />}></Route>
-        </Routes>
-      </Layout>
-
-   
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/about' element={<AboutUs />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='/inventory' element={<Inventory />}></Route>
+        <Route path='/forgotpassword' element={<ForgotPassword />}></Route>
+        <Route path='/resetpassword' element={<ResetPassword />}></Route>
+      </Routes>   
     </>
 
       );
