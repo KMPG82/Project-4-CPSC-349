@@ -547,6 +547,11 @@ a {
     border: none;
 }
 
+.input__button:hover{
+    cursor: pointer;
+    background-color: #ff4848;
+}
+
 .account__info {
     display: flex;
     justify-content: space-between;

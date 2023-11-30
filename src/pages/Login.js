@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import pb from "../lib/pocketbase";
 import { useForm } from "react-hook-form";
 
-export default function LoginPage() {
+export default function Login() {
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
     //const [loggedOut, setLoggedOut] = useState(false)

@@ -1,6 +1,6 @@
 import './assets/css/App.css';
 import './assets/css/main.css';
-import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 /* 
 DONE:
 
@@ -25,7 +25,7 @@ import navbar and footer to forgot and reset password (don't know if we need to 
 function App() {
   return (
     <>
-      <SignUp/>
+      <Login/>
     </>
 
       );
