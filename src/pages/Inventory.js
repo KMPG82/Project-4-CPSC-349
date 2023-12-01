@@ -1,10 +1,62 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '../components/Layout';
+import Card from '../components/Card';
+import Form from '../components/CardForm';
+import Display from '../components/InventoryDisplay'
 import pb from '../lib/pocketbase';
 import { Navigate } from 'react-router-dom';
 
 export default function Inventory() {
     const isLoggedIn = pb.authStore.isValid;
+    const [cards, setCards] = useState([]);
+    const [formOpen, setFormStatus] = useState(false);
+    let userPokemon = [];
+    const userId = pb.authStore.model.id;
+
+
+
+    // Show and hide form function
+    function openForm() {
+      setFormStatus(!formOpen);
+    }
+
+    async function refresh() {
+        await fetchPokemon();
+        updateCards();
+    }
+
+    useEffect(() => { refresh(); }, [])
+
+    // Pulls pokemon from pocketbase based on userId
+    async function fetchPokemon() {
+        try {
+            const loadedPokemon = await pb.collection('pokemon').getFullList({ filter: `field="${userId}"` });
+            userPokemon = loadedPokemon;
+            console.log(userPokemon);
+        } catch(e) {
+        }
+
+    }
+
+    // Update Cards from pulled data
+    function updateCards() {
+        let newCards = [];
+        for (let i = 0; i < userPokemon.length; i++) {
+            let data = userPokemon[i];
+            newCards.push(<Card key={data.id} data={data} removePokemon={removePokemon}/>);
+        }
+        setCards(newCards);
+    }
+
+    async function removePokemon(pokemonId) {
+        try {
+            const updatedPokemon = await pb.collection('pokemon').delete(pokemonId);
+            refresh(); 
+        } catch (e) {
+            alert(e);
+        }
+
+    }
 
     if (isLoggedIn) {
         return (
@@ -16,70 +68,15 @@ export default function Inventory() {
                           <a className="main__sub--title" href="https://www.pokemon.com/us/pokedex">Find your pokemon's picture to upload
                               here!</a>
   
-                          <button className="card-button">add pokemon</button>
+                          <button className="card-button" onClick={openForm}>add pokemon</button>
                           <h3>Copy Image Address and Paste it in the Picture Section!</h3>
                       </div>
                   </div>
+
+                  {formOpen ? <Form toggle={openForm} refresh={refresh}/> : null}
                   
                   <div className="main__container">
-                      <div className="collection-container" >
-                          <div className="collection">
-                              <div className="card" >
-                                  <button className="card-button">Remove</button>
-                                  <div className="top-bar" >
-                                      <div className="name">
-                                          <p>Name</p>
-                                      </div>
-                                      <div className="level-container">
-                                          <p>LV.</p>
-                                          <div className="level">
-  
-                                          </div>
-                                      </div>
-                                  </div>
-                                  
-                                  <div className="pic-container">
-                                      <div>
-                                          <img className="img__pokemon"  src="" alt=''/>
-  
-                                      </div>
-                                      <button className="card-button">Add pic of pokemon</button>
-                                  </div>
-  
-                                  <div className="description">
-                                      <div className="price-container">
-                                          <p className="card-labels">Price</p>
-                                          <div className="price">
-  
-                                          </div>
-                                      </div>
-                                      <div className="type-container">
-                                          <p className="card-labels">Type(s)</p>
-                                          <div className="type">
-  
-                                          </div>
-                                      </div>
-  
-                                      <div className="abilities-container">
-                                          <p className="card-labels">Moves</p>
-                                          <div>
-                                              <div className="ability">
-  
-                                              </div>
-                                          </div>
-                                          <button className="card-button">New move</button>
-                                      </div>
-                                      
-                                      <div className="hp-container">
-                                          <p className="card-labels">Hit Points</p>
-                                          <div className="hp">
-              
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                    <Display input={cards}/>
                   </div>
               </section>
             </Layout>
