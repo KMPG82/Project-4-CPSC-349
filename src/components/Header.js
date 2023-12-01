@@ -34,7 +34,7 @@ export default function Header() {
                     <div className="nav__right">
                         <ul className="nav__lists">
                             <li className="nav__list">
-                                <Link onClick={logout} className="nav__button" >Logout</Link>
+                                <Link onClick={logout} to='/' className="nav__button" >Logout</Link>
                             </li>
                         </ul>
                     </div>
