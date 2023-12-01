@@ -42,7 +42,7 @@ export default function Login() {
                             <button className="input__button" type="submit">Log In</button>
                         </div>
                         <div className="account__info">
-                            <Link className="forgot__p" to="/forgotpassword">Forgot your password?</Link>
+                            <a className="forgot__p" href="">Forgot your password?</a>
                             <div className="account__right">
                             <p className="account__quest">Don't have an account?</p>
                             <Link className="toggle__link right" to="/signup">Sign Up</Link>
