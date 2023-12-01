@@ -7,7 +7,6 @@ import Layout from "../components/Layout";
 export default function Login() {
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
-    //const [loggedOut, setLoggedOut] = useState(false)
     const isLoggedIn = pb.authStore.isValid;
 
     async function login(data) {
@@ -15,7 +14,7 @@ export default function Login() {
         try {
             const authData = await pb
                 .collection("users")
-                .authWithPassword(data.email, data.password);            
+                .authWithPassword(data.username, data.password);            
         } catch (e) {
             alert(e);
         }
@@ -37,7 +36,7 @@ export default function Login() {
                         <h1 className="log--in__title">Log In</h1>
                         <div className="input__container">
                             <label className="input__text" >Username</label>
-                            <input className="input__login" type="text" name="username" placeholder="Username" {...register("email")} required/>
+                            <input className="input__login" type="text" name="username" placeholder="Username" {...register("username")} required/>
                             <label className="input__text" >Password</label>
                                 <input className="input__login" type="password" name="password" placeholder="Password" {...register("password")} required/>
                             <button className="input__button" type="submit">Log In</button>

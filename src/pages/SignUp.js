@@ -14,10 +14,11 @@ export default function SignUp() {
         setLoading(true);
         try {
             const record = await pb.collection('users').create({
+                username: data.username,
                 email: data.email,
                 emailVisibility: true,
                 password: data.password,
-                passwordConfirm: data.password,
+                passwordConfirm: data.confirmPassword,
             });
 
             const authData = await pb
@@ -41,15 +42,19 @@ export default function SignUp() {
                     <div className="log--in__container">
                         <div className="form__left">
                             <form className="log--in__form" onSubmit={handleSubmit(signUp)} >
-                            <h1 className="log--in__title">Sign Up</h1>
-                            <div className="input__container">
-                                <label className="input__text" >Username</label>
-                                <input className="input__login" type="text" id="signup-username" name="username" placeholder="Username" {...register("email")} required/>
-                                <label className="input__text" >Password</label>
-                                <input className="input__login" type="password" id="signup-password" name="password" placeholder="Password" {...register("password")} required/>
-                                <button className="input__button" type="submit">Sign Up</button>
-                            </div>
-                            <p className="account__quest">Have an account?</p>
+                                <h1 className="log--in__title">Sign Up</h1>
+                                <div className="input__container">
+                                    <label className="input__text" >Username</label>
+                                    <input className="input__login" type="text" id="signup-username" name="username" placeholder="Username" {...register("username")} required />
+                                    <label className="input__text" >Email</label>
+                                    <input className="input__login" type="text" id="signup-email" name="email" placeholder="anemail@email.com" {...register("email")} required />
+                                    <label className="input__text" >Password</label>
+                                    <input className="input__login" type="password" id="signup-password" name="password" placeholder="Password" {...register("password")} required />
+                                    <label className="input__text" >Confirm Password</label>
+                                    <input className="input__login" type="password" id="signup-confirm-password" name="confirm-password" placeholder="Re-enter password" {...register("confirmPassword")} required/>
+                                    <button className="input__button" type="submit">Sign Up</button>
+                                </div>
+                                <p className="account__quest">Have an account?</p>
                             <Link to="/login" className="toggle__link" >Log In</Link>
                             </form>
                         </div>
