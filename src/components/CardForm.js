@@ -7,7 +7,6 @@ export default function CardForm(status) {
   const userId = pb.authStore.model.id;
 
   async function AddPokemon(data) {
-    setLoading(true);
     try {
       const card = await pb.collection('pokemon').create({
         field: userId,
@@ -26,7 +25,6 @@ export default function CardForm(status) {
   } catch (e) {
       alert(e);
     }
-    setLoading(false);
   }
 
   return (
