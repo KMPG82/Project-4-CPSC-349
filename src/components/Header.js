@@ -33,8 +33,8 @@ export default function Header() {
                     </div>
                     <div className="nav__right">
                         <ul className="nav__lists">
-                            <li class="nav__list">
-                                <Link onClick={logout} class="nav__button" >Logout</Link>
+                            <li className="nav__list">
+                                <Link onClick={logout} className="nav__button" >Logout</Link>
                             </li>
                         </ul>
                     </div>
