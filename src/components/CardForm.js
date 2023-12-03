@@ -7,7 +7,7 @@ export default function CardForm(status) {
   const userId = pb.authStore.model.id;
 
   async function AddPokemon(data) {
-    const dataMoves = data.moves.split(", ");
+    const dataMoves = data.move .split(", ");
     let moves = {};
     for (let i = 0; i < dataMoves.length && i < 4; i++) {
       let moveKey = "move" + (i+1);

@@ -1,8 +1,13 @@
 export default function Card(input) {
   let data = input.data;
 
-  const moves = data.moves;
-  console.log(moves);
+  const dataMoves = data.moves;
+  const moves = [];
+  for (const element in dataMoves) {
+    if (dataMoves.hasOwnProperty(element)) { 
+        moves.push(<p>{dataMoves[element]}</p>);
+    }
+  } 
 
   return (
     // <div className="collection">
@@ -47,7 +52,7 @@ export default function Card(input) {
                   <p className="card-labels">Moves</p>
                   <div>
                       <div className="ability">
-                      {`${moves}`}
+                      {moves}
                       </div>
                   </div>
                   {/* <button className="card-button">New move</button> */}
