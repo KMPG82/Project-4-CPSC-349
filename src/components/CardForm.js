@@ -18,7 +18,6 @@ export default function CardForm(status) {
       const card = await pb.collection('pokemon').create({
         field: userId,  
         level: data.level,
-        image: null,
         price: data.price,
         type: data.type,
         moves: moves,
@@ -36,21 +35,43 @@ export default function CardForm(status) {
 
   return (
     <form className="card__form" onSubmit={handleSubmit(AddPokemon)}>
+      <p>Please fill this out then press submit to add your pokemon!</p>
       <div className="cardform__input__container">
-        <label className="cardform__input__text">Name</label>
-        <input className="cardform__input__data" type="text" id="cardform-name" name="name" placeholder="Name" {...register("name")} required/>
-        <label className="cardform__input__text">Level</label>
+        <div className='cardform__input'>
+          <label className="cardform__input__text">Name:</label>
+          <input className="cardform__input__data" type="text" id="cardform-name" name="name" placeholder="Name" {...register("name")} required/>
+        </div>
+
+        <div className='cardform__input'>
+        <label className="cardform__input__text">Level:</label>
         <input className="cardform__input__data" type="text" id="cardform-level" name="level" placeholder="Level" {...register("level")} required/>
-        <label className="cardform__input__text">Price</label>
+        </div>
+
+        <div className='cardform__input'>
+        <label className="cardform__input__text">Price:</label>
         <input className="cardform__input__data" type="text" id="cardform-price" name="price" placeholder="Price" {...register("price")} required/>
-        <label className="cardform__input__text">Type(s)</label>
+        </div>
+
+        <div className='cardform__input'>
+        <label className="cardform__input__text">Type(s):</label>
         <input className="cardform__input__data" type="text" id="cardform-type" name="type" placeholder="Type" {...register("type")} required/>
-        <label className="cardform__input__text">Moves</label>
-        <input className="cardform__input__data" type="text" id="cardform-moves" name="moves" placeholder="Moves" {...register("moves")} required/>
-        <label className="cardform__input__text">Hit Points</label>
+        </div>
+
+        <div className='cardform__input'>
+        <label className="cardform__input__text">Moves:</label>
+        <input className="cardform__input__data" type="text" id="cardform-moves" name="moves" placeholder="Moves" {...register("move")} required/>
+        </div>
+
+        <div className='cardform__input'>
+        <label className="cardform__input__text">Hit Points:</label>
         <input className="cardform__input__data" type="text" id="cardform-hp" name="hp" placeholder="Hit Points" {...register("hp")} required/>
-        <label className="cardform__input__text">Image</label>
+        </div>
+
+        <div className='cardform__input'>
+        <label className="cardform__input__text">Image:</label>
         <input className="cardform__input__data" type="text" id="cardform-image" name="image_url" placeholder="Image Url" {...register("image_url")} required/>
+        </div>
+
         <button className="cardform__button" type="submit">Submit</button>
       </div>
     </form>

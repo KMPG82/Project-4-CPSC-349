@@ -5,10 +5,10 @@ export default function Card(input) {
   console.log(moves);
 
   return (
-    <div className="collection">
+    // <div className="collection">
       <div className="card" >
           <button className="card-button" onClick={() => input.removePokemon(data.id)}>Remove</button>
-          <button className="card-button">Edit</button>
+          {/* <button className="card-button">Edit</button> */}
           <div className="top-bar" >
               <div className="name">
                   <p>Name</p>
@@ -26,7 +26,7 @@ export default function Card(input) {
               <div>
                   <img className="img__pokemon" src={`${data.image_url}`} alt={`${data.name}`}/>
               </div>
-              <button className="card-button">Add pic of pokemon</button>
+              {/* <button className="card-button">Add pic of pokemon</button> */}
           </div>
 
           <div className="description">
@@ -50,7 +50,7 @@ export default function Card(input) {
                       {`${moves}`}
                       </div>
                   </div>
-                  <button className="card-button">New move</button>
+                  {/* <button className="card-button">New move</button> */}
               </div>
               
               <div className="hp-container">
@@ -61,6 +61,6 @@ export default function Card(input) {
               </div>
           </div>
       </div>
-    </div>
+    //</div>
   );
 }

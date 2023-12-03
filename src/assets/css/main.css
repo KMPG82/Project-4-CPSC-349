@@ -120,7 +120,6 @@ a {
 
 .main__container {
     margin: 0 auto;
-    align-items: center;
     max-width: 1440px;
     min-height: 100vh;
 }
@@ -173,13 +172,11 @@ a {
     text-decoration: underline;
 }
 
-
-
-
 .collection-container {
     position: relative;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .collection-container>button {
@@ -188,19 +185,47 @@ a {
 }
 
 .collection {
-    display: flex;
-    flex-wrap: wrap;
     margin: 0 auto;
     justify-content: center;
 }
 
+.card__form{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.cardform__button{
+    font-size: 20px;
+}
+
+.cardform__input{
+    margin: 10px;
+}
+
+.cardform__input__container{
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardform__input__data{
+    font-size: 20px;
+    width: 100px;
+}
 
 .card {
     font-size: 23px;
     display: flex;
     flex-direction: column;
     width: 350px;
-    height: 700px;
+    height: 650px;
     background-color: rgb(255, 209, 209);
     border: solid;
     border-width: 5px;
@@ -208,6 +233,10 @@ a {
     margin: 10px;
     align-items: center;
     overflow-y: auto;
+}
+
+.name>p{
+    text-decoration: underline;
 }
 
 .top-bar {
@@ -223,6 +252,11 @@ a {
 
 .level-container {
     display: flex;
+}
+
+.level-container>p{
+    text-decoration: underline;
+    margin-right: 5px;
 }
 
 .level {
@@ -247,6 +281,7 @@ a {
     align-items: center;
     border: solid;
     margin: 10px;
+    justify-content: center;
 }
 
 .img__pokemon {
