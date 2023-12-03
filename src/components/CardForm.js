@@ -28,6 +28,7 @@ export default function CardForm(status) {
 
   return (
     <form className="card__form" onSubmit={handleSubmit(AddPokemon)}>
+      <p>Please fill this out then press submit to add your pokemon!</p>
       <div className="cardform__input__container">
         <div className='cardform__input'>
           <label className="cardform__input__text">Name:</label>
