@@ -220,6 +220,15 @@ a {
     width: 100px;
 }
 
+.search-bar{
+    font-size: 20px;
+    margin: 15px;
+}
+
+.search-bar>input{
+    font-size: 20px;
+}
+
 .card {
     font-size: 23px;
     display: flex;

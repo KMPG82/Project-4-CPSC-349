@@ -5,6 +5,7 @@ import Form from '../components/CardForm';
 import Display from '../components/InventoryDisplay'
 import pb from '../lib/pocketbase';
 import { Navigate } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 
 export default function Inventory() {
     const isLoggedIn = pb.authStore.isValid;
@@ -25,7 +26,9 @@ export default function Inventory() {
         updateCards();
     }
 
-    useEffect(() => { refresh(); }, [])
+    useEffect(() => {
+        refresh();
+    console.log('hello')}, [])
 
     // Pulls pokemon from pocketbase based on userId
     async function fetchPokemon() {
@@ -58,6 +61,19 @@ export default function Inventory() {
 
     }
 
+    async function search(e) {
+        console.log(e.target.value);
+
+        const loadedPokemon = await pb.collection('pokemon').getFullList({
+            filter: `field="${userId}" && (name~"${e.target.value}" || type~"${e.target.value}" || level="${e.target.value}" ||
+            price="${e.target.value}" || hit_points="${e.target.value}" || moves~"${e.target.value}")`,
+        });
+
+        console.log(loadedPokemon);
+        userPokemon = loadedPokemon;
+        updateCards();
+    }
+
     if (isLoggedIn) {
         return (
             <Layout>
@@ -75,9 +91,10 @@ export default function Inventory() {
 
                   {formOpen ? <Form toggle={openForm} refresh={refresh}/> : null}
                   
-                  <div className="main__container">
-                    <Display input={cards}/>
-                  </div>
+                    <div className="main__container">
+                        <SearchBar handleSearch={search} />
+                        <Display input={cards}/>
+                    </div>
               </section>
             </Layout>
         )
