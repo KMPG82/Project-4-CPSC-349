@@ -7,14 +7,21 @@ export default function CardForm(status) {
   const userId = pb.authStore.model.id;
 
   async function AddPokemon(data) {
+    const dataMoves = data.moves.split(", ");
+    let moves = {};
+    for (let i = 0; i < dataMoves.length && i < 4; i++) {
+      let moveKey = "move" + (i+1);
+      moves[moveKey] = dataMoves[i];
+    }
+    console.log(moves);
     try {
       const card = await pb.collection('pokemon').create({
-        field: userId,
+        field: userId,  
         level: data.level,
         image: null,
         price: data.price,
         type: data.type,
-        moves: null,
+        moves: moves,
         name: data.name,
         hit_points: data.hp,
         image_url: data.image_url,
@@ -39,7 +46,7 @@ export default function CardForm(status) {
         <label className="cardform__input__text">Type(s)</label>
         <input className="cardform__input__data" type="text" id="cardform-type" name="type" placeholder="Type" {...register("type")} required/>
         <label className="cardform__input__text">Moves</label>
-        <input className="cardform__input__data" type="text" id="cardform-moves" name="moves" placeholder="Moves" {...register("move")} required/>
+        <input className="cardform__input__data" type="text" id="cardform-moves" name="moves" placeholder="Moves" {...register("moves")} required/>
         <label className="cardform__input__text">Hit Points</label>
         <input className="cardform__input__data" type="text" id="cardform-hp" name="hp" placeholder="Hit Points" {...register("hp")} required/>
         <label className="cardform__input__text">Image</label>

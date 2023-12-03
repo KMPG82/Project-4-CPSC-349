@@ -1,6 +1,9 @@
 export default function Card(input) {
   let data = input.data;
 
+  const moves = data.moves;
+  console.log(moves);
+
   return (
     <div className="collection">
       <div className="card" >
@@ -44,7 +47,7 @@ export default function Card(input) {
                   <p className="card-labels">Moves</p>
                   <div>
                       <div className="ability">
-                      {`${data.moves}`}
+                      {`${moves}`}
                       </div>
                   </div>
                   <button className="card-button">New move</button>
