@@ -10,7 +10,20 @@ export default function CardForm(status) {
     const dataMoves = data.move .split(", ");
     let moves = {};
     for (let i = 0; i < dataMoves.length && i < 4; i++) {
-      let moveKey = "move" + (i+1);
+      let moveKey;
+      if (i === 0) {
+        moveKey = 'firstMove';
+      }
+      else if (i === 1) {
+        moveKey = 'secondMove';
+      }
+      else if (i === 2) {
+        moveKey = 'thirdMove';
+      }
+      else {
+        moveKey = 'fourthMove';
+      }
+      //let moveKey = "move" + (i+1);
       moves[moveKey] = dataMoves[i];
     }
     console.log(moves);
