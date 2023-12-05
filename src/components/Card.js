@@ -61,7 +61,7 @@ export default function Card(input) {
               <div className="hp-container">
                   <p className="card-labels">Hit Points</p>
                   <div className="hp">
-                  {`${data.hit_points}`}
+                  {`${data.hp}`}
                   </div>
               </div>
           </div>

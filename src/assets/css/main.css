@@ -225,8 +225,26 @@ a {
     margin: 15px;
 }
 
+.sort-bar{
+    font-size: 20px;
+    margin: 15px;
+    justify-self: end;
+}
+
+.sort-bar>select{
+    width: 100px;
+    height: 24px;
+    font-size: 20px;
+
+}
+
 .search-bar>input{
     font-size: 20px;
+}
+
+.services{
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .card {

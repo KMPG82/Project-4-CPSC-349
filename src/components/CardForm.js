@@ -35,7 +35,7 @@ export default function CardForm(status) {
         type: data.type,
         moves: moves,
         name: data.name,
-        hit_points: data.hp,
+        hp: data.hp,
         image_url: data.image_url,
       });
 

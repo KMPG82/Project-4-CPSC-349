@@ -6,11 +6,14 @@ import Display from '../components/InventoryDisplay'
 import pb from '../lib/pocketbase';
 import { Navigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
+import Filter from '../components/Filter';
 
 export default function Inventory() {
     const isLoggedIn = pb.authStore.isValid;
     const [cards, setCards] = useState([]);
     const [formOpen, setFormStatus] = useState(false);
+    const [sorted, setSorted] = useState(false);
+
     let userPokemon = [];
     const userId = pb.authStore.model.id;
 
@@ -66,11 +69,26 @@ export default function Inventory() {
 
         const loadedPokemon = await pb.collection('pokemon').getFullList({
             filter: `field="${userId}" && (name~"${e.target.value}" || type~"${e.target.value}" || level="${e.target.value}" ||
-            price="${e.target.value}" || hit_points="${e.target.value}" || moves~"${e.target.value}")`,
+            price="${e.target.value}" || hp="${e.target.value}" || moves~"${e.target.value}")`,
         });
 
         console.log(loadedPokemon);
         userPokemon = loadedPokemon;
+        updateCards();
+    }
+
+    async function sort(e) {
+        console.log(e.target.value.toLowerCase());
+        const choice = e.target.value.toLowerCase();
+        
+        const loadedPokemon = await pb.collection('pokemon').getFullList({
+            filter: `field="${userId}"`,
+            sort: `${choice}`,
+        });
+
+        console.log(loadedPokemon);
+        userPokemon = loadedPokemon;
+        setSorted(true);
         updateCards();
     }
 
@@ -92,7 +110,10 @@ export default function Inventory() {
                   {formOpen ? <Form toggle={openForm} refresh={refresh}/> : null}
                   
                     <div className="main__container">
-                        <SearchBar handleSearch={search} />
+                        <div className='services'>
+                            <SearchBar handleSearch={search} />
+                            <Filter handleSort={sort} />
+                        </div>
                         <Display input={cards}/>
                     </div>
               </section>
