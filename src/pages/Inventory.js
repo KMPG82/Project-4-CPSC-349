@@ -12,12 +12,9 @@ export default function Inventory() {
     const isLoggedIn = pb.authStore.isValid;
     const [cards, setCards] = useState([]);
     const [formOpen, setFormStatus] = useState(false);
-    const [sorted, setSorted] = useState(false);
 
     let userPokemon = [];
     const userId = pb.authStore.model.id;
-
-
 
     // Show and hide form function
     function openForm() {
@@ -36,10 +33,11 @@ export default function Inventory() {
     // Pulls pokemon from pocketbase based on userId
     async function fetchPokemon() {
         try {
-            const loadedPokemon = await pb.collection('pokemon').getFullList({ filter: `field="${userId}"` });
+            const loadedPokemon = await pb.collection('pokemon').getFullList({ filter: `field="${userId}"`, requestKey: null });
             userPokemon = loadedPokemon;
             console.log(userPokemon);
-        } catch(e) {
+        } catch (e) {
+            alert(e);
         }
 
     }
@@ -49,7 +47,7 @@ export default function Inventory() {
         let newCards = [];
         for (let i = 0; i < userPokemon.length; i++) {
             let data = userPokemon[i];
-            newCards.push(<Card key={data.id} data={data} removePokemon={removePokemon}/>);
+            newCards.push(<Card key={data.id} data={data} removePokemon={removePokemon} />);
         }
         setCards(newCards);
     }
@@ -65,31 +63,35 @@ export default function Inventory() {
     }
 
     async function search(e) {
-        console.log(e.target.value);
-
-        const loadedPokemon = await pb.collection('pokemon').getFullList({
-            filter: `field="${userId}" && (name~"${e.target.value}" || type~"${e.target.value}" || level="${e.target.value}" ||
-            price="${e.target.value}" || hp="${e.target.value}" || moves~"${e.target.value}")`,
-        });
-
-        console.log(loadedPokemon);
-        userPokemon = loadedPokemon;
-        updateCards();
+        try {
+            const loadedPokemon = await pb.collection('pokemon').getFullList({
+                filter: `field="${userId}" && (name~"${e.target.value}" || type~"${e.target.value}" || level="${e.target.value}" ||
+                price="${e.target.value}" || hp="${e.target.value}" || moves~"${e.target.value}")`, requestKey: null
+            });
+    
+            console.log(loadedPokemon);
+            userPokemon = loadedPokemon;
+            updateCards();
+        } catch (error) {
+            alert(error);
+        }    
     }
 
     async function sort(e) {
-        console.log(e.target.value.toLowerCase());
-        const choice = e.target.value.toLowerCase();
+        try {
+            const choice = e.target.value.toLowerCase();
         
-        const loadedPokemon = await pb.collection('pokemon').getFullList({
-            filter: `field="${userId}"`,
-            sort: `${choice}`,
-        });
+            const loadedPokemon = await pb.collection('pokemon').getFullList({
+                filter: `field="${userId}"`,
+                sort: `${choice}`,
+            });
 
-        console.log(loadedPokemon);
-        userPokemon = loadedPokemon;
-        setSorted(true);
-        updateCards();
+            console.log(loadedPokemon);
+            userPokemon = loadedPokemon;
+            updateCards();
+        } catch (error) {
+            alert(error);
+        }
     }
 
     if (isLoggedIn) {

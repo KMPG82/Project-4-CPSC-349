@@ -1,13 +1,13 @@
 import pb from '../lib/pocketbase';
 import { useForm } from "react-hook-form";
-import React, {useState} from 'react';
+import React from 'react';
 
 export default function CardForm(status) {
   const {register, handleSubmit} = useForm();
   const userId = pb.authStore.model.id;
 
   async function AddPokemon(data) {
-    const dataMoves = data.move .split(", ");
+    const dataMoves = data.move.split(", ");
     let moves = {};
     for (let i = 0; i < dataMoves.length && i < 4; i++) {
       let moveKey;

@@ -262,6 +262,10 @@ a {
     overflow-y: auto;
 }
 
+.move{
+    margin-top: 5px;
+}
+
 .name>p{
     text-decoration: underline;
 }
