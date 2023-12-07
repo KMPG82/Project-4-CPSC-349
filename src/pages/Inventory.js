@@ -16,6 +16,32 @@ export default function Inventory() {
     let userPokemon = [];
     const userId = pb.authStore.model.id;
 
+    const handleListForTrade = async (pokemonId, isListed) => {
+        try {
+            await pb.records.update('pokemon', pokemonId, { isListedForTrade: isListed });
+            refresh(); // Refresh the list to reflect the change
+        } catch (error) {
+            console.error("Error updating Pokémon listing status", error);
+        }
+    };
+    
+function updateCards() {
+    let newCards = [];
+    for (let i = 0; i < userPokemon.length; i++) {
+        let data = userPokemon[i];
+        newCards.push(
+            <Card 
+                key={data.id} 
+                data={data} 
+                removePokemon={removePokemon} 
+                handleListForTrade={handleListForTrade} // Pass the function here
+            />
+        );
+    }
+    setCards(newCards);
+}
+
+
     // Show and hide form function
     function openForm() {
       setFormStatus(!formOpen);
@@ -42,15 +68,6 @@ export default function Inventory() {
 
     }
 
-    // Update Cards from pulled data
-    function updateCards() {
-        let newCards = [];
-        for (let i = 0; i < userPokemon.length; i++) {
-            let data = userPokemon[i];
-            newCards.push(<Card key={data.id} data={data} removePokemon={removePokemon} />);
-        }
-        setCards(newCards);
-    }
 
     async function removePokemon(pokemonId) {
         try {

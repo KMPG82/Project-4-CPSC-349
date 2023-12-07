@@ -24,11 +24,15 @@ export default function Header() {
                                 <Link className="nav__button" to="/">Home</Link>
                             </li>
                             <li className="nav__list">
-                                <Link className="nav__button" to="/inventory">Trade</Link>
+                                <Link className="nav__button" to="/inventory">Inventory</Link>
+                            </li>
+                            <li className="nav__list">
+                                <Link className="nav__button" to="/trade">Trade</Link>
                             </li>
                             <li className="nav__list">
                                 <Link className="nav__button" to="/about">About</Link>
                             </li>
+                            
                         </ul>
                     </div>
                     <div className="nav__right">

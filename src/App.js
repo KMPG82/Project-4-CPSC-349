@@ -5,6 +5,7 @@ import AboutUs from './pages/AboutUs';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Inventory from './pages/Inventory';
+import Trade from './pages/Trade';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/inventory' element={<Inventory />}></Route>
+        <Route path='/trade' element={<Trade />}></Route>
         <Route path='/forgotpassword' element={<ForgotPassword />}></Route>
         <Route path='/resetpassword' element={<ResetPassword />}></Route>
       </Routes>   

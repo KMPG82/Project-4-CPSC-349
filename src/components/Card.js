@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Card(input) {
   let data = input.data;
 
@@ -9,11 +11,18 @@ export default function Card(input) {
     }
   } 
 
+  const handleListForTradeClick = () => {
+    input.handleListForTrade(data.id, !data.isListedForTrade);
+  };
+
   return (
     // <div className="collection">
       <div className="card" >
           <button className="card-button" onClick={() => input.removePokemon(data.id)}>Remove</button>
           {/* <button className="card-button">Edit</button> */}
+          <button className="card-button" onClick={handleListForTradeClick}>
+                {data.isListedForTrade ? "Unlist from Trade" : "List for Trade"}
+            </button>
           <div className="top-bar" >
               <div className="name">
                   <p>Name</p>
@@ -66,6 +75,7 @@ export default function Card(input) {
                   {`${data.hp}`}
                   </div>
               </div>
+
           </div>
       </div>
     //</div>
