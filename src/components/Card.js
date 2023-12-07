@@ -11,8 +11,9 @@ export default function Card(input) {
     }
   } 
 
-  const handleListForTradeClick = () => {
-    input.handleListForTrade(data.id, !data.isListedForTrade);
+    const handleListForTradeClick = () => {
+        console.log(data.isListedForTrade);
+        input.handleListForTrade(data.id, !data.isListedForTrade);
   };
 
   return (

@@ -105,7 +105,7 @@ export default function Inventory() {
     const handleListForTrade = async (pokemonId, isListed) => {
 
         try {
-            await pb.records.update('pokemon', pokemonId, { isListedForTrade: isListed });
+            await pb.collection('pokemon').update(`${pokemonId}`, { isListedForTrade: isListed });
             refresh();
         } catch (error) {
             console.error("Error updating Pokémon listing status", error);
