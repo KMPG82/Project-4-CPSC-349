@@ -30,6 +30,7 @@ export default function Card(input) {
     try {
       // Fetch the Pokémon record
       const pokemonRecord = await pb.collection('pokemon').getOne(pokemonId);
+      console.log(pokemonRecord);
       const sellerUserId = pokemonRecord.field; // Replace 'userId' with the actual field name in your Pokémon collection
 
       console.log("Seller User ID:", sellerUserId);
@@ -41,11 +42,16 @@ export default function Card(input) {
       }
   
       // Fetch the seller's user record THE ERROR IS AT THIS LINE
-      const sellerRecord = await pb.collection('users').getOne(sellerUserId);
+      const sellerRecord = await pb.collection('users').getOne(sellerUserId, {
+        fields: '*'
+    });
+
+      console.log(sellerRecord)
   
       // Fetch buyer's record (assuming buyerId is available in your auth store)
       const buyerId = pb.authStore.model.id;
       const buyerRecord = await pb.collection('users').getOne(buyerId);
+      console.log(buyerRecord)
   
       // Check if buyer has enough currency
       if (buyerRecord.wallet < pokemonRecord.price) {
@@ -60,9 +66,11 @@ export default function Card(input) {
       await pb.collection('users').update(sellerUserId, { wallet: sellerRecord.wallet + pokemonRecord.price });
   
       // Transfer Pokémon ownership
-      await pb.collection('pokemon').update(pokemonId, { userId: buyerId });
-  
+      await pb.collection('pokemon').update(pokemonId, { field: buyerId, isListedForTrade: false });
+      
       alert('Pokémon purchase successful!');
+      window.location.reload();
+
   
     } catch (error) {
       console.error("Error during purchase", error);
@@ -76,6 +84,9 @@ export default function Card(input) {
   if (input.store === true) {
     return (
       <div className="card store" >
+        <button className="card-button" onClick={() => handleBuyPokemon(data.id)}>
+          Buy
+        </button>
         <div className="top-bar" >
           <div className="name">
             <p>Name</p>
@@ -127,11 +138,6 @@ export default function Card(input) {
             </div>
           </div>
         </div>
-        <button className="card-button" onClick={() => handleBuyPokemon(data.id)}>
-          Buy
-        </button>
-
-
       </div>
     );
   } else {

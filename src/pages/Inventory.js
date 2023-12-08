@@ -12,6 +12,8 @@ export default function Inventory() {
     const isLoggedIn = pb.authStore.isValid;
     const [cards, setCards] = useState([]);
     const [formOpen, setFormStatus] = useState(false);
+    const [reload, setReload] = useState(false);
+
 
     let userPokemon = [];
     const userId = pb.authStore.model.id;
@@ -28,7 +30,7 @@ export default function Inventory() {
 
     useEffect(() => {
         refresh();
-    console.log('hello')}, [])
+    }, [])
 
     // Pulls pokemon from pocketbase based on userId
     async function fetchPokemon() {

@@ -48,12 +48,18 @@ export default function Header() {
                         <li className="nav__list">
                             <Link className="nav__button" to="/">Home</Link>
                         </li>
-                        <li className="nav__list">
-                            <Link className="nav__button" to="/inventory">Inventory</Link>
-                        </li>
-                        <li className="nav__list">
-                            <Link className="nav__button" to="/trade">Trade</Link>
-                        </li>
+                        {isLoggedIn ? (
+                            <>
+                                <li className="nav__list">
+                                    <Link className="nav__button" to="/inventory">Inventory</Link>
+                                </li> 
+
+                                <li className="nav__list">
+                                    <Link className="nav__button" to="/trade">Trade</Link>
+                                </li>
+                            </>
+                        ):(<></>)}
+                        
                         <li className="nav__list">
                             <Link className="nav__button" to="/about">About</Link>
                         </li>
@@ -63,7 +69,7 @@ export default function Header() {
                     {isLoggedIn ? (
                         <>
                             <div className="currency__display">
-                                Currency: {wallet}
+                                Currency: {currency}
                             </div>
                             <Link to="/wallet" className="wallet__tab">Wallet</Link>
                             <Link onClick={logout} to="/" className="nav__button">Logout</Link>

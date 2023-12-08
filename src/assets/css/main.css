@@ -289,8 +289,8 @@ a {
 
 }
 
-.store{
-    height: 600px;
+.store>button{
+    width: 60px;
 }
 
 .move{
@@ -723,7 +723,9 @@ a {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 100px; 
     padding-right: 50px;
-    overflow-x: hidden;
+    margin: 0 auto;
+    max-width: 1440px;
+    min-height: 100vh;
 }
 
 
