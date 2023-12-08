@@ -679,6 +679,19 @@ a {
     width: 200px;
 }
 
+
+
+/* TRADE */ 
+.grid-container {
+    margin: 0 auto;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 100px; 
+    padding: 20px;
+}
+
+
 /* Footer */
 footer {
     display: flex;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import pb from '../lib/pocketbase';
 import Card from '../components/Card';
+import Layout from '../components/Layout';
 
 const Trade = () => {
     const [pokemons, setPokemons] = useState([]);
@@ -40,12 +41,15 @@ const Trade = () => {
     };
 
     return (
-        <div>
-              {pokemons.map(pokemon => (
-                  <Card key={pokemon.id} data={pokemon} handleListForTrade={handleListForTrade} store={true} />
+        <Layout>
+        <div className="grid-container">
+            {pokemons.map(pokemon => (
+                <Card key={pokemon.id} data={pokemon} handleListForTrade={handleListForTrade} store={true} />
             ))}  
         </div>
-    );
+        </Layout>
+        
+    );    
 };
 
 export default Trade;
