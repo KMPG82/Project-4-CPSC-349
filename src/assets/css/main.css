@@ -57,6 +57,22 @@
     border-bottom: 2px solid #ffcb05;
 }
 
+.currency__display {
+    color: #ffffff;
+    font-size: 30px;
+    margin-right: 45px;
+}
+
+.wallet__tab {
+    color: #ffffff;
+    font-size: 30px;
+    margin-right: 15px;
+}
+
+.wallet__tab:hover {
+    border-bottom: 2px solid #ffffff;
+}
+
 ul {
     list-style: none;
 }
@@ -64,6 +80,16 @@ ul {
 a {
     text-decoration: none;
 } 
+
+
+/* Currency */
+
+.currency-display {
+    margin-right: 20px; 
+    font-size: 1rem; 
+    color: #FFF; 
+}
+
 
 /* Main Page */
 #main {
@@ -251,7 +277,7 @@ a {
     font-size: 23px;
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 325px;
     height: 677px;
     background-color: rgb(255, 209, 209);
     border: solid;
@@ -260,6 +286,7 @@ a {
     margin: 10px;
     align-items: center;
     overflow-y: auto;
+
 }
 
 .store{
@@ -549,6 +576,13 @@ a {
     height: 100%;
 }
 
+
+/* Wallet */
+
+.wallet-container {
+    height: 59vh;
+}
+
 /* Sign Up & Log In */
 
 /* Log In */
@@ -688,7 +722,8 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 100px; 
-    padding: 20px;
+    padding-right: 50px;
+    overflow-x: hidden;
 }
 
 
