@@ -9,7 +9,8 @@ const Trade = () => {
     useEffect(() => {
         const fetchListedPokemons = async () => {
             try {
-                const response = await pb.records.getList("pokemon", 1, 50, {
+                // Using the PocketBase client to fetch data
+                const response = await pb.collection('pokemon').getFullList({
                     filter: `userId!='${currentUserId}' and isListedForTrade=true`
                 });
                 setPokemons(response.items);
@@ -19,15 +20,27 @@ const Trade = () => {
         };
 
         fetchListedPokemons();
-    }, []);
+    }, []); // Added currentUserId as a dependency for useEffect
 
-    // You might want to modify the Card component or create a new one for the trade page
-    // to handle trade-specific actions like sending a trade request.
+    const handleListForTrade = async (pokemonId, isListed) => {
+        try {
+          await pb.collection('pokemon').update(`${pokemonId}`, { isListedForTrade: isListed });
+          // Refresh the data after updating
+          const updatedPokemons = [...pokemons]; // Create a copy of the current pokemons
+          const updatedPokemonIndex = updatedPokemons.findIndex(pokemon => pokemon.id === pokemonId);
+          if (updatedPokemonIndex !== -1) {
+            updatedPokemons[updatedPokemonIndex].isListedForTrade = isListed;
+            setPokemons(updatedPokemons);
+          }
+        } catch (error) {
+          console.error("Error updating Pokémon listing status", error);
+        }
+    };
 
     return (
         <div>
             {pokemons.map(pokemon => (
-                <Card key={pokemon.id} data={pokemon} />
+                <Card key={pokemon.id} data={pokemon} handleListForTrade={handleListForTrade} />
             ))}
         </div>
     );

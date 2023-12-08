@@ -11,10 +11,20 @@ export default function Card(input) {
     }
   } 
 
-    const handleListForTradeClick = () => {
-        console.log(data.isListedForTrade);
-        input.handleListForTrade(data.id, !data.isListedForTrade);
-  };
+  const handleListForTradeClick = () => {
+    // Toggle the isListedForTrade status when the button is clicked
+    const updatedIsListed = data.isListedForTrade === undefined ? false : !data.isListedForTrade;
+    console.log("Before update:", data.isListedForTrade);
+    console.log("Updated isListedForTrade:", updatedIsListed);
+
+    // Update the data object with the new isListedForTrade value
+    data = { ...data, isListedForTrade: updatedIsListed };
+
+    console.log("After update:", data.isListedForTrade);
+    input.handleListForTrade(data.id, updatedIsListed);
+};
+
+
 
   return (
     // <div className="collection">
