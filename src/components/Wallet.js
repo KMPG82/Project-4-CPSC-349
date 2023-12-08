@@ -34,7 +34,7 @@ const Wallet = () => {
 
     return (
         <div className="wallet-container">
-            <form onSubmit={handleAddCurrency}>
+            <form className='amount-display' onSubmit={handleAddCurrency}>
                 <label htmlFor="amount">Amount:</label>
                 <input
                     type="number"

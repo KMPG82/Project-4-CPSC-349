@@ -583,6 +583,16 @@ a {
     height: 59vh;
 }
 
+.amount-display,
+.amount-display>button,
+.amount-display>input{
+    font-size: 20px;
+}
+
+.amount-display>input{
+    margin: 10px;
+}
+
 /* Sign Up & Log In */
 
 /* Log In */
