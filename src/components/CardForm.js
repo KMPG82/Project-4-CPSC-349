@@ -37,6 +37,7 @@ export default function CardForm(status) {
         name: data.name,
         hp: data.hp,
         image_url: data.image_url,
+        isListedForTrade: false
       });
 
       status.toggle();

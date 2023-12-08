@@ -262,6 +262,10 @@ a {
     overflow-y: auto;
 }
 
+.store{
+    height: 600px;
+}
+
 .move{
     margin-top: 5px;
 }

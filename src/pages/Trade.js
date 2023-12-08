@@ -5,15 +5,17 @@ import Card from '../components/Card';
 const Trade = () => {
     const [pokemons, setPokemons] = useState([]);
     const currentUserId = pb.authStore.model.id;
+    console.log(pokemons);
 
     useEffect(() => {
         const fetchListedPokemons = async () => {
             try {
                 // Using the PocketBase client to fetch data
                 const response = await pb.collection('pokemon').getFullList({
-                    filter: `userId!='${currentUserId}' and isListedForTrade=true`
+                    filter: `field!="${currentUserId}" && isListedForTrade=true`
                 });
-                setPokemons(response.items);
+                console.log(response);
+                setPokemons(response);
             } catch (error) {
                 console.error("Error fetching listed Pokémon data", error);
             }
@@ -39,9 +41,9 @@ const Trade = () => {
 
     return (
         <div>
-            {pokemons.map(pokemon => (
-                <Card key={pokemon.id} data={pokemon} handleListForTrade={handleListForTrade} />
-            ))}
+              {pokemons.map(pokemon => (
+                  <Card key={pokemon.id} data={pokemon} handleListForTrade={handleListForTrade} store={true} />
+            ))}  
         </div>
     );
 };
